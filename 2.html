@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Блокнот</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: sans-serif;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      font-size: 16px;
+      resize: none;
+      border: none;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <textarea id="notepad" placeholder="Начните писать..."></textarea>
+
+  <script>
+    const textarea = document.getElementById('notepad');
+
+    // Загружаем сохранённый текст из localStorage
+    textarea.value = localStorage.getItem('notepadContent') || '';
+
+    // Сохраняем текст при каждом изменении
+    textarea.addEventListener('input', () => {
+      localStorage.setItem('notepadContent', textarea.value);
+    });
+  </script>
+</body>
+</html>
